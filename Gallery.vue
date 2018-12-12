@@ -90,7 +90,7 @@ export default {
     },
     async handleDelete (id) {
       try {
-        const photo = await this.deleteAction(id)
+        await this.deleteAction(id)
         this.$emit('deleted', id)
       } catch (_) {
         this.$emit('error', 'failedDelete', id)
