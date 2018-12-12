@@ -22,9 +22,9 @@ export default {
     value: {
       type: Array
     },
-    fileName: {
+    imagePath: {
       type: String,
-      default: 'fileName'
+      default: 'url'
     },
     urlPrefix: {
       type: String,
