@@ -2,7 +2,7 @@
   <transition-group name="gallery-fade" tag="div" class="gallery">
     <GalleryFile v-for="image in model"
       :key="image.id"
-      :url="urlPrefix + image[fileName]"
+      :url="urlPrefix + image[imagePath]"
       @delete="handleDelete"/>
 
     <div class="gallery-file gallery-file--upload"
