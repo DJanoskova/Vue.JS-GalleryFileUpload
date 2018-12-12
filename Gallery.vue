@@ -2,7 +2,8 @@
   <transition-group name="gallery-fade" tag="div" class="gallery">
     <GalleryFile v-for="image in model"
       :key="image.id"
-      :url="urlPrefix + image[fileName]"/>
+      :url="urlPrefix + image[fileName]"
+      @delete="handleDelete"/>
 
     <div class="gallery-file gallery-file--upload"
       @click="$refs.filePicker.click()"
@@ -81,9 +82,18 @@ export default {
       data.append('file', file)
       try {
         const photo = await this.uploadAction(data)
+        this.$emit('success', file)
         this.model.push(photo)
       } catch (_) {
         this.$emit('error', 'failedUpload', file)
+      }
+    },
+    async handleDelete (id) {
+      try {
+        const photo = await this.deleteAction(id)
+        this.$emit('deleted', id)
+      } catch (_) {
+        this.$emit('error', 'failedDelete', id)
       }
     }
   },
